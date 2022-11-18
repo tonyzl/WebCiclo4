@@ -3,12 +3,16 @@
     <form [formGroup]="fgValidacion" class="col s12" (ngSubmit)="store()">
       <div class="row">
         <div class="input-field col s6">
-          <input formControlName="origen" type="text" class="validate">
-          <label for="origen">Origen</label>
+          <select class="browser-default" formControlName="origen" >
+            <option value="" disabled selected>Seleccione la estacion Origen</option>
+            <option *ngFor="let estacion of listadoEstaciones" value="{{estacion.nombre}}">{{estacion.nombre}}</option>
+          </select>
         </div>
         <div class="input-field col s6">
-          <input formControlName="destino" type="text" class="validate">
-          <label for="destino">Destino</label>
+          <select class="browser-default" formControlName="destino" >
+            <option value="" disabled selected>Seleccione la estacion Destino</option>
+            <option *ngFor="let estacion of listadoEstaciones" value="{{estacion.nombre}}">{{estacion.nombre}}</option>
+          </select>
         </div>
       </div>
       <div class="row">
