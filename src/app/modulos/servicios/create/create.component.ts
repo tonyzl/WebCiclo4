@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { ServicioModel } from 'src/app/modelos/servicio.model';
 import { ServicioService } from 'src/app/servicios/servicio.service';
 import Swal from 'sweetalert2'
+import { RutaService } from 'src/app/servicios/ruta.service';
+import { RutaModel } from 'src/app/modelos/ruta.model';
+
 
 @Component({
   selector: 'app-create',
@@ -14,6 +17,7 @@ export class CreateComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private servicioService: ServicioService,
+    private rutaService: RutaService,
     private router: Router) { }
 
   fgValidacion = this.fb.group({
@@ -25,6 +29,8 @@ export class CreateComponent implements OnInit {
       dinero_recogido: ['', [Validators.required]],
       ruta: ['', [Validators.required]],
     });
+
+    listadoRutas: RutaModel[] = []    
     
   store(){
       let servicio= new ServicioModel();
@@ -47,6 +53,14 @@ export class CreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getRutas()
+  }
+
+  getRutas(){
+    this.rutaService.getAll().subscribe((data: RutaModel[]) => {
+      this.listadoRutas = data
+      console.log(data)
+    })
   }
 
 }

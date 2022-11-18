@@ -10,6 +10,7 @@ import Swal from 'sweetalert2'
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css']
 })
+
 export class EditComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
